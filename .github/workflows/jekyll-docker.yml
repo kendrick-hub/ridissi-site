@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ridissi | Le Meilleur du Riz Local Ivoirien</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #065f46;
+            --secondary: #d97706;
+            --light-bg: #f8fafc;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky-nav">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-emerald-800 text-white p-2 rounded-lg font-bold text-xl">R</div>
+                <span class="text-2xl font-bold text-emerald-900 tracking-wider text-uppercase">RISISSI</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium text-gray-700">
+                <a href="#accueil" class="hover:text-emerald-700">Accueil</a>
+                <a href="#produits" class="hover:text-emerald-700">Nos Produits</a>
+                <a href="#boutiques" class="hover:text-emerald-700">Points de Vente</a>
+                <a href="#contact" class="hover:text-emerald-700">Contact</a>
+            </div>
+            <a href="https://wa.me/2250709720781" target="_blank" class="bg-emerald-700 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-800 transition">
+                Commander
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="accueil" class="hero-gradient h-[80vh] flex items-center justify-center text-center text-white px-4">
+        <div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Le Goût Authentique de la Côte d'Ivoire</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Découvrez notre riz local premium, naturellement parfumé et cultivé avec passion pour votre santé.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#produits" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-md text-lg font-bold">Voir nos produits</a>
+                <a href="#boutiques" class="bg-white hover:bg-gray-100 text-emerald-900 px-8 py-3 rounded-md text-lg font-bold">Où nous trouver ?</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nos Produits -->
+    <section id="produits" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Nos Variétés d'Exception</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Produit 1 -->
+                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 bg-emerald-100 flex items-center justify-center">
+                        <i class="fa-solid fa-wheat-awn text-emerald-800 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Riz Blanc Long Grain</h3>
+                        <p class="text-gray-600 text-sm mb-4">Naturellement parfumé, idéal pour vos repas quotidiens en famille.</p>
+                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold">
+                            <li>4,5kg : 3 600 F</li>
+                            <li>22,5kg : 18 000 F</li>
+                        </ul>
+                        <button onclick="orderItem('Riz Blanc Long Grain')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    </div>
+                </div>
+
+                <!-- Produit 2 -->
+                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-emerald-200">
+                    <div class="h-48 bg-emerald-800 flex items-center justify-center relative">
+                        <span class="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">SANTÉ</span>
+                        <i class="fa-solid fa-heart-pulse text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-emerald-900">Riz Santé (Diabétiques)</h3>
+                        <p class="text-gray-600 text-sm mb-4">Riz blanc sélectionné pour les personnes hypertendues et diabétiques.</p>
+                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold">
+                            <li>1kg : 1 000 F</li>
+                            <li>4,5kg : 4 500 F</li>
+                            <li>25kg : 25 000 F</li>
+                        </ul>
+                        <button onclick="orderItem('Riz Santé')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    </div>
+                </div>
+
+                <!-- Produit 3 -->
+                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 bg-purple-900 flex items-center justify-center">
+                        <i class="fa-solid fa-seedling text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Riz Noir & Violet</h3>
+                        <p class="text-gray-600 text-sm mb-4">Variétés rares riches en antioxydants pour une vitalité optimale.</p>
+                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold">
+                            <li>1kg : 2 000 F</li>
+                            <li>10kg : 20 000 F</li>
+                        </ul>
+                        <button onclick="orderItem('Riz Noir/Violet')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    </div>
+                </div>
+
+                <!-- Produit 4 -->
+                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 bg-amber-100 flex items-center justify-center">
+                        <i class="fa-solid fa-bowl-rice text-amber-800 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Granulés de Riz</h3>
+                        <p class="text-gray-600 text-sm mb-4">Délicieux granulés pour bouillies et préparations spéciales.</p>
+                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold text-sm">
+                            <li>300g (Blanc) : 2 000 F</li>
+                            <li>300g (Noir/Violet) : 2 500 F</li>
+                        </ul>
+                        <button onclick="orderItem('Granulés de Riz')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Points de Vente -->
+    <section id="boutiques" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Où acheter votre Riz Risissi ?</h2>
+                <p class="text-gray-600">Retrouvez-nous dans plus de 20 localités à travers le pays.</p>
+                <input type="text" id="storeSearch" placeholder="Rechercher une ville..." class="mt-6 px-4 py-2 border rounded-full w-full max-w-md focus:outline-none focus:ring-2 focus:ring-emerald-700 shadow-sm" onkeyup="filterStores()">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="storesList">
+                <!-- Abidjan - Cocody -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="cocody">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Cocody</h4>
+                    <p class="text-sm text-gray-600 mb-1">Nouveau Chu / Djorobité 2 / Angré Château / 2 Plateaux</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 05 64 37 62 28 / 07 89 19 33 65</p>
+                </div>
+
+                <!-- Abidjan - Yopougon -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="yopougon">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Yopougon</h4>
+                    <p class="text-sm text-gray-600 mb-1">Azito / Toit Rouge / Ségbé / Agbayaté</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 77 94 70 73 / 07 58 67 33 59</p>
+                </div>
+
+                <!-- Korhogo -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="korhogo">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Korhogo</h4>
+                    <p class="text-sm text-gray-600 mb-1">Immeuble Wahab, quartier Alikader</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 88 12 28 30 / 01 02 13 45 03</p>
+                </div>
+
+                <!-- Yamoussoukro -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="yamoussoukro">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Yamoussoukro</h4>
+                    <p class="text-sm text-gray-600 mb-1">Grande gare Auchan / Énergie / NanNan</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 05 92 48 35</p>
+                </div>
+
+                <!-- San Pedro -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="san-pedro">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">San-Pedro</h4>
+                    <p class="text-sm text-gray-600 mb-1">Quartier Commerce</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 05 65 40 00 00</p>
+                </div>
+
+                <!-- Aboisso -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="aboisso">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Aboisso</h4>
+                    <p class="text-sm text-gray-600 mb-1">Près de la place Eillingand rue SELECT</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 47 75 02 53</p>
+                </div>
+
+                <!-- Bassam -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="grand-bassam">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Grand-Bassam</h4>
+                    <p class="text-sm text-gray-600 mb-1">Centre Ville / Quartier France</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 48 55 42 39 / 07 08 46 85 94</p>
+                </div>
+
+                <!-- Ferké -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="ferke">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Ferké</h4>
+                    <p class="text-sm text-gray-600 mb-1">Dioulabougou non loin de la grande mosquée</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 79 96 64 38</p>
+                </div>
+
+                <!-- Bouaké -->
+                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="bouake">
+                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Bouaké</h4>
+                    <p class="text-sm text-gray-600 mb-1">Contact Principal</p>
+                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 18 06 07 07</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-emerald-950 text-white py-12 px-4">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-4 italic">RISISSI</h3>
+                <p class="text-emerald-200">Producteur de riz local d'exception en Côte d'Ivoire. Nous mettons l'accent sur la qualité et la santé de nos consommateurs.</p>
+                <div class="mt-6 flex space-x-4">
+                    <a href="#" class="bg-emerald-800 p-2 rounded-full hover:bg-amber-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="bg-emerald-800 p-2 rounded-full hover:bg-amber-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="bg-emerald-800 p-2 rounded-full hover:bg-amber-600 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Liens Rapides</h4>
+                <ul class="space-y-2 text-emerald-200">
+                    <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
+                    <li><a href="#produits" class="hover:text-white transition">Nos Produits</a></li>
+                    <li><a href="#boutiques" class="hover:text-white transition">Points de Vente</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xl font-bold mb-4">Contact Central</h4>
+                <p class="text-emerald-200 mb-2 font-bold"><i class="fa-solid fa-location-dot mr-2"></i> Côte d'Ivoire</p>
+                <p class="text-emerald-200 mb-2 font-bold"><i class="fa-solid fa-phone mr-2"></i> +225 07 09 72 07 81</p>
+                <p class="text-emerald-200 mb-2 font-bold"><i class="fa-solid fa-envelope mr-2"></i> contact@risissi.ci</p>
+            </div>
+        </div>
+        <div class="border-t border-emerald-900 mt-12 pt-8 text-center text-emerald-400 text-sm">
+            <p>&copy; 2024 RISISSI RIZ LOCAL. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp Flottant -->
+    <a href="https://wa.me/2250709720781" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Fonction de recherche de boutique
+        function filterStores() {
+            let input = document.getElementById('storeSearch').value.toLowerCase();
+            let items = document.getElementsByClassName('store-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                let city = items[i].getAttribute('data-city').toLowerCase();
+                let text = items[i].innerText.toLowerCase();
+                if (city.includes(input) || text.includes(input)) {
+                    items[i].style.display = "block";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        // Fonction pour commander (redirection WhatsApp avec message pré-rempli)
+        function orderItem(itemName) {
+            const message = encodeURIComponent(`Bonjour Risissi, je souhaite commander du ${itemName}. Pouvez-vous me donner plus d'informations ?`);
+            window.open(`https://wa.me/2250709720781?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
