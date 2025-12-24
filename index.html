@@ -6,8 +6,8 @@
     <title>Ridissi | Excellence du Riz Local Ivoirien</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Polices Google Fonts : Syne pour l'effet Wahou, Inter pour le professionnalisme -->
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Polices Google Fonts : DM Serif Display pour le côté rustique/campagne, Inter pour la clarté -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #064e3b;
@@ -18,13 +18,14 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             color: #1e293b;
+            /* Texture subtile rappelant le papier kraft ou le grain */
+            background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
         }
-        h1, h2, h3, h4, .nav-logo, .font-wahou {
-            font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
+        h1, h2, h3, h4, .nav-logo, .font-rural {
+            font-family: 'DM Serif Display', serif;
         }
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
         }
@@ -38,7 +39,6 @@
         .whatsapp-float:hover {
             transform: scale(1.1) rotate(5deg);
         }
-        /* Animation d'apparition */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -53,13 +53,16 @@
         }
         .nav-link {
             position: relative;
-            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
         }
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 1px;
             bottom: -4px;
             left: 0;
             background-color: var(--accent);
@@ -69,142 +72,127 @@
             width: 100%;
         }
         .premium-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
         }
         .premium-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(6, 78, 59, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.1);
         }
     </style>
 </head>
-<body class="bg-[#fcfcf9] overflow-x-hidden">
-
-    <!-- Audio pour l'entrée -->
-    <audio id="welcomeSound" preload="auto">
-        <source src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3" type="audio/mpeg">
-    </audio>
+<body class="bg-[#f9f8f4] overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-emerald-100/30">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-emerald-900/10">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-emerald-900 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">R</div>
-                <span class="text-xl font-extrabold text-emerald-950 tracking-[0.2em] nav-logo">RIDISSI</span>
+                <div class="w-9 h-9 bg-emerald-900 rounded-full flex items-center justify-center text-white font-serif italic text-xl shadow-md">R</div>
+                <span class="text-2xl font-bold text-emerald-950 tracking-tighter nav-logo">Ridissi</span>
             </div>
-            <div class="hidden md:flex space-x-10 text-emerald-900 font-bold uppercase text-[10px]">
-                <a href="#accueil" class="nav-link">Accueil</a>
-                <a href="#produits" class="nav-link">Produits</a>
+            <div class="hidden md:flex space-x-12 text-emerald-950">
+                <a href="#accueil" class="nav-link">La Terre</a>
+                <a href="#produits" class="nav-link">La Récolte</a>
                 <a href="#boutiques" class="nav-link">Boutiques</a>
             </div>
-            <button onclick="openModal()" class="bg-emerald-950 text-white px-6 py-2 rounded-md font-bold text-[10px] shadow-sm hover:bg-emerald-800 transition-all uppercase tracking-widest">
+            <button onclick="openModal()" class="border border-emerald-900 text-emerald-900 px-6 py-2 rounded-full font-bold text-[10px] hover:bg-emerald-900 hover:text-white transition-all uppercase tracking-widest">
                 Commander
             </button>
         </div>
     </nav>
 
     <!-- Hero -->
-    <header id="accueil" class="hero-section h-[85vh] flex items-center text-white relative">
-        <div class="container mx-auto px-6 z-10">
-            <div class="max-w-4xl">
-                <span class="inline-block border border-emerald-400/50 text-emerald-400 px-4 py-1.5 rounded-full text-[10px] font-bold mb-6 tracking-[0.4em] uppercase">Origine Côte d'Ivoire</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight">
-                    Le goût de la <br><span class="text-emerald-400 italic">perfection</span>.
+    <header id="accueil" class="hero-section h-[80vh] flex items-center text-white relative">
+        <div class="container mx-auto px-6 z-10 text-center md:text-left">
+            <div class="max-w-3xl">
+                <span class="inline-block text-emerald-300 font-bold mb-6 tracking-[0.3em] uppercase text-xs">Tradition Rizicole Ivoirienne</span>
+                <h1 class="text-6xl md:text-8xl font-normal mb-8 leading-none italic">
+                    L'âme de nos <br>campagnes.
                 </h1>
-                <p class="text-lg md:text-xl text-emerald-50/70 mb-10 leading-relaxed max-w-xl font-light">
-                    Une sélection rigoureuse de grains locaux pour une expérience culinaire raffinée et saine au quotidien.
+                <p class="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0 font-light italic">
+                    Un riz authentique, cultivé avec respect pour la terre, pour apporter la pureté des champs directement à votre table.
                 </p>
-                <div class="flex flex-wrap gap-5">
-                    <button onclick="openModal()" class="bg-emerald-500 px-8 py-4 rounded-lg font-bold text-sm hover:bg-emerald-400 transition shadow-xl shadow-emerald-500/20 uppercase tracking-widest">Acheter maintenant</button>
-                    <a href="#produits" class="bg-white/10 backdrop-blur-md px-8 py-4 rounded-lg font-bold text-sm hover:bg-white/20 transition border border-white/20 uppercase tracking-widest">Voir la gamme</a>
+                <div class="flex flex-col md:flex-row gap-5 justify-center md:justify-start">
+                    <button onclick="openModal()" class="bg-emerald-800 px-10 py-4 rounded-full font-bold text-xs hover:bg-emerald-700 transition uppercase tracking-widest">Découvrir la récolte</button>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#fcfcf9] to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#f9f8f4] to-transparent"></div>
     </header>
 
     <!-- Nos Produits -->
-    <section id="produits" class="py-24 bg-[#fcfcf9]">
+    <section id="produits" class="py-24">
         <div class="container mx-auto px-6">
-            <div class="mb-20 reveal">
-                <h2 class="text-4xl font-extrabold text-emerald-950 mb-4 tracking-tight">Collection Signature</h2>
-                <p class="text-slate-500 font-medium">Découvrez notre gamme de riz d'exception.</p>
+            <div class="mb-20 text-center reveal">
+                <h2 class="text-5xl font-normal text-emerald-950 mb-4 italic">Nos Grains d'Exception</h2>
+                <div class="w-16 h-px bg-emerald-900/30 mx-auto"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 <!-- Produit 1 -->
-                <div class="reveal bg-white rounded-3xl p-8 premium-card border border-emerald-50">
-                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-wheat-awn text-emerald-800 text-2xl"></i>
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border border-emerald-900/5">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">01.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Blanc Long Grain</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Un grain nacré d'une pureté absolue, reflet de nos vallées fertiles.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>4,5kg</span><span class="font-bold">3.600F</span></div>
+                        <div class="flex justify-between pb-2"><span>22,5kg</span><span class="font-bold">18.000F</span></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-emerald-950">Blanc Long Grain</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-6">Finesse et parfum naturel pour vos repas de prestige.</p>
-                    <div class="space-y-2 mb-8 text-sm font-semibold text-emerald-900">
-                        <div class="flex justify-between py-2 border-b border-emerald-50"><span>4,5kg</span><span class="text-emerald-500">3.600F</span></div>
-                        <div class="flex justify-between py-2"><span>22,5kg</span><span>18.000F</span></div>
-                    </div>
-                    <button onclick="openModal('Riz Blanc Long Grain')" class="w-full bg-emerald-950 text-white py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-700 transition">Choisir</button>
+                    <button onclick="openModal('Riz Blanc Long Grain')" class="w-full bg-emerald-900 text-white py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-800 transition">Sélectionner</button>
                 </div>
 
                 <!-- Produit 2 -->
-                <div class="reveal bg-white rounded-3xl p-8 premium-card border-2 border-emerald-500/10 shadow-xl shadow-emerald-900/5 relative overflow-hidden" style="transition-delay: 0.1s;">
-                    <div class="absolute -top-1 -right-1 bg-emerald-500 text-white px-6 py-2 rotate-12 font-bold text-[9px] tracking-tighter uppercase shadow-md">Populaire</div>
-                    <div class="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-heart-pulse text-red-500 text-2xl"></i>
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border-t-4 border-emerald-700" style="transition-delay: 0.1s;">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">02.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Riz Santé Nature</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Riche en nutriments, ce grain accompagne votre bien-être au quotidien.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>1kg</span><span class="font-bold">1.000F</span></div>
+                        <div class="flex justify-between pb-2"><span>4,5kg</span><span class="font-bold">4.500F</span></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-emerald-950">Riz Santé</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-6">Un équilibre glycémique optimal pour une vitalité durable.</p>
-                    <div class="space-y-2 mb-8 text-sm font-semibold text-emerald-900">
-                        <div class="flex justify-between py-2 border-b border-emerald-50"><span>1kg</span><span>1.000F</span></div>
-                        <div class="flex justify-between py-2"><span>4,5kg</span><span>4.500F</span></div>
-                    </div>
-                    <button onclick="openModal('Riz Santé')" class="w-full bg-emerald-500 text-white py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition shadow-lg shadow-emerald-500/20">Choisir</button>
+                    <button onclick="openModal('Riz Santé')" class="w-full bg-emerald-700 text-white py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition">Sélectionner</button>
                 </div>
 
                 <!-- Riz Noir -->
-                <div class="reveal bg-emerald-950 text-white rounded-3xl p-8 premium-card" style="transition-delay: 0.2s;">
-                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-moon text-emerald-300 text-2xl"></i>
+                <div class="reveal bg-[#1a2e26] text-white rounded-2xl p-8 premium-card" style="transition-delay: 0.2s;">
+                    <div class="text-white/20 mb-6 text-4xl italic font-serif">03.</div>
+                    <h3 class="text-2xl font-bold mb-4 italic">Trésor Noir</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-8">Une rareté au goût terreux et sauvage, récoltée en petites quantités.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-white/10 pb-2"><span>1kg</span><span class="font-bold">2.000F</span></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Noir & Violet</h3>
-                    <p class="text-emerald-100/50 text-xs leading-relaxed mb-6">Richesse antioxydante et saveur boisée unique.</p>
-                    <div class="space-y-2 mb-8 text-sm font-semibold">
-                        <div class="flex justify-between py-2 border-b border-white/10"><span>1kg</span><span class="text-emerald-400">2.000F</span></div>
-                        <div class="flex justify-between py-2"><span>10kg</span><span>20.000F</span></div>
-                    </div>
-                    <button onclick="openModal('Riz Noir/Violet')" class="w-full bg-white text-emerald-950 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-50 transition">Choisir</button>
+                    <button onclick="openModal('Riz Noir/Violet')" class="w-full bg-emerald-50 text-emerald-950 py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-white transition">Sélectionner</button>
                 </div>
 
                 <!-- Granulés -->
-                <div class="reveal bg-amber-50 rounded-3xl p-8 premium-card border border-amber-100" style="transition-delay: 0.3s;">
-                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-seedling text-amber-700 text-2xl"></i>
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border border-emerald-900/5" style="transition-delay: 0.3s;">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">04.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Brisures de Vie</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Granulés fins pour des bouillies onctueuses au goût d'enfance.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>300g Blanc</span><span class="font-bold">2.000F</span></div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-amber-950">Granulés Fins</h3>
-                    <p class="text-amber-900/50 text-xs leading-relaxed mb-6">La base idéale pour des préparations onctueuses.</p>
-                    <div class="space-y-2 mb-8 text-sm font-semibold text-amber-900">
-                        <div class="flex justify-between py-2 border-b border-amber-100/50"><span>Blanc 300g</span><span>2.000F</span></div>
-                        <div class="flex justify-between py-2"><span>Violet 300g</span><span>2.500F</span></div>
-                    </div>
-                    <button onclick="openModal('Granulés de Riz')" class="w-full bg-amber-700 text-white py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-amber-600 transition">Choisir</button>
+                    <button onclick="openModal('Granulés de Riz')" class="w-full border border-emerald-900 text-emerald-900 py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-50 transition">Sélectionner</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal de Commande -->
-    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-emerald-950/90 backdrop-blur-md opacity-0 invisible scale-95">
-        <div class="bg-white w-full max-w-sm rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-300 hover:text-emerald-950 transition-colors z-10"><i class="fa-solid fa-circle-xmark text-2xl"></i></button>
+    <!-- Modal de Commande (Style Rural Chic) -->
+    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-emerald-950/80 backdrop-blur-sm opacity-0 invisible scale-95">
+        <div class="bg-[#fcfcf9] w-full max-w-sm rounded-xl p-8 shadow-2xl relative border border-emerald-900/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-emerald-900/20 hover:text-emerald-900 transition-colors z-10"><i class="fa-solid fa-xmark text-xl"></i></button>
             
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-extrabold text-emerald-950 mb-1">Commander</h2>
-                <p class="text-[9px] text-emerald-500 font-bold tracking-[0.3em] uppercase">Service de Prestige</p>
+                <h2 class="text-3xl font-normal italic text-emerald-950 mb-1">Votre Commande</h2>
+                <p class="text-[9px] text-emerald-700 font-bold tracking-[0.3em] uppercase">Du champ à votre table</p>
             </div>
 
-            <form id="orderForm" class="space-y-4">
+            <form id="orderForm" class="space-y-5">
                 <div class="space-y-1">
-                    <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest ml-1">Variété</label>
-                    <select id="prodChoice" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-bold text-xs appearance-none cursor-pointer">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Variété de riz</label>
+                    <select id="prodChoice" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs appearance-none cursor-pointer">
                         <option value="Riz Blanc Long Grain">Riz Blanc Long Grain</option>
                         <option value="Riz Santé">Riz Santé (Diabétiques)</option>
                         <option value="Riz Noir/Violet">Riz Noir & Violet</option>
@@ -212,61 +200,52 @@
                     </select>
                 </div>
                 <div class="space-y-1">
-                    <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest ml-1">Quantité</label>
-                    <input type="text" id="prodQuantity" placeholder="Ex: 5 sacs de 4,5kg" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-bold text-xs placeholder:text-slate-300" required>
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Quantité souhaitée</label>
+                    <input type="text" id="prodQuantity" placeholder="Ex: 5 sacs de 4,5kg" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs" required>
                 </div>
                 <div class="space-y-1">
-                    <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest ml-1">Lieu</label>
-                    <input type="text" id="custCity" placeholder="Ville et quartier" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-bold text-xs placeholder:text-slate-300" required>
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Adresse de livraison</label>
+                    <input type="text" id="custCity" placeholder="Commune et quartier" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs" required>
                 </div>
                 
-                <button type="submit" class="w-full bg-emerald-500 text-white py-4 rounded-xl font-bold text-xs shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 transition-all flex items-center justify-center gap-3 group mt-4 uppercase tracking-widest">
+                <button type="submit" class="w-full bg-emerald-900 text-white py-4 rounded-lg font-bold text-xs shadow-lg hover:bg-emerald-800 transition-all flex items-center justify-center gap-3 uppercase tracking-widest">
                     <span>Valider sur WhatsApp</span>
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <i class="fa-brands fa-whatsapp"></i>
                 </button>
             </form>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-emerald-50 py-20">
+    <footer class="bg-white border-t border-emerald-900/5 py-20">
         <div class="container mx-auto px-6 text-center">
             <div class="mb-12">
-                <div class="text-3xl font-extrabold text-emerald-950 mb-4 tracking-[0.2em] nav-logo italic">RIDISSI</div>
-                <p class="text-slate-400 max-w-md mx-auto font-medium text-sm leading-relaxed">
-                    Le partenaire de votre santé et de vos moments de partage autour d'un riz d'exception.
+                <div class="text-4xl font-normal text-emerald-950 mb-4 italic nav-logo">Ridissi</div>
+                <p class="text-slate-400 max-w-sm mx-auto text-sm leading-relaxed italic">
+                    Cultivé avec passion au cœur de la Côte d'Ivoire.
                 </p>
             </div>
-            <div class="flex justify-center gap-6 mb-12">
-                <a href="#" class="w-12 h-12 border border-emerald-50 rounded-full flex items-center justify-center text-emerald-900 hover:bg-emerald-900 hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://wa.me/2250709720781" class="w-12 h-12 border border-emerald-50 rounded-full flex items-center justify-center text-emerald-900 hover:bg-emerald-900 hover:text-white transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+            <div class="flex justify-center gap-10 mb-12">
+                <a href="https://wa.me/2250709720781" class="text-emerald-900 hover:text-emerald-600 transition-colors"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                <a href="#" class="text-emerald-900 hover:text-emerald-600 transition-colors"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
             </div>
-            <div class="text-[9px] text-slate-300 font-bold uppercase tracking-[0.5em]">&copy; 2024 RIDISSI CÔTE D'IVOIRE</div>
+            <div class="text-[9px] text-slate-300 font-bold uppercase tracking-[0.5em]">&copy; 2024 RIDISSI &mdash; L'excellence de la terre</div>
         </div>
     </footer>
 
     <!-- Bouton WhatsApp Flottant -->
-    <a href="javascript:void(0)" onclick="openModal()" class="whatsapp-float bg-emerald-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/30">
+    <a href="javascript:void(0)" onclick="openModal()" class="whatsapp-float bg-emerald-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-xl shadow-emerald-700/20">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <script>
-        // Son de bienvenue
-        document.addEventListener('click', function() {
-            const audio = document.getElementById('welcomeSound');
-            if(audio.paused) {
-                audio.volume = 0.15;
-                audio.play().catch(() => {});
-            }
-        }, {once: true});
-
         // Animation de révélation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
+                var elementVisible = 100;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
@@ -300,11 +279,595 @@
             const qty = document.getElementById('prodQuantity').value;
             const city = document.getElementById('custCity').value;
 
-            const msg = `✨ *COMMANDE RIDISSI* ✨\n\n` +
+            const msg = `🌾 *COMMANDE RIDISSI* 🌾\n\n` +
                         `🍚 *Variété:* ${prod}\n` +
                         `📦 *Quantité:* ${qty}\n` +
                         `📍 *Livraison:* ${city}\n\n` +
-                        `_Merci de me recontacter pour la livraison._`;
+                        `_Je souhaite recevoir ces produits de la terre._`;
+
+            window.open("https://wa.me/2250709720781?text=" + encodeURIComponent(msg), '_blank');
+            closeModal();
+        };
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ridissi | Excellence du Riz Local Ivoirien</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Polices Google Fonts : DM Serif Display pour le côté rustique/campagne, Inter pour la clarté -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #064e3b;
+            --secondary: #b45309;
+            --accent: #10b981;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            color: #1e293b;
+            /* Texture subtile rappelant le papier kraft ou le grain */
+            background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
+        }
+        h1, h2, h3, h4, .nav-logo, .font-rural {
+            font-family: 'DM Serif Display', serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #orderModal {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link {
+            position: relative;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .premium-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        .premium-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#f9f8f4] overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-emerald-900/10">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-emerald-900 rounded-full flex items-center justify-center text-white font-serif italic text-xl shadow-md">R</div>
+                <span class="text-2xl font-bold text-emerald-950 tracking-tighter nav-logo">Ridissi</span>
+            </div>
+            <div class="hidden md:flex space-x-12 text-emerald-950">
+                <a href="#accueil" class="nav-link">La Terre</a>
+                <a href="#produits" class="nav-link">La Récolte</a>
+                <a href="#boutiques" class="nav-link">Boutiques</a>
+            </div>
+            <button onclick="openModal()" class="border border-emerald-900 text-emerald-900 px-6 py-2 rounded-full font-bold text-[10px] hover:bg-emerald-900 hover:text-white transition-all uppercase tracking-widest">
+                Commander
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="accueil" class="hero-section h-[80vh] flex items-center text-white relative">
+        <div class="container mx-auto px-6 z-10 text-center md:text-left">
+            <div class="max-w-3xl">
+                <span class="inline-block text-emerald-300 font-bold mb-6 tracking-[0.3em] uppercase text-xs">Tradition Rizicole Ivoirienne</span>
+                <h1 class="text-6xl md:text-8xl font-normal mb-8 leading-none italic">
+                    L'âme de nos <br>campagnes.
+                </h1>
+                <p class="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0 font-light italic">
+                    Un riz authentique, cultivé avec respect pour la terre, pour apporter la pureté des champs directement à votre table.
+                </p>
+                <div class="flex flex-col md:flex-row gap-5 justify-center md:justify-start">
+                    <button onclick="openModal()" class="bg-emerald-800 px-10 py-4 rounded-full font-bold text-xs hover:bg-emerald-700 transition uppercase tracking-widest">Découvrir la récolte</button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#f9f8f4] to-transparent"></div>
+    </header>
+
+    <!-- Nos Produits -->
+    <section id="produits" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="mb-20 text-center reveal">
+                <h2 class="text-5xl font-normal text-emerald-950 mb-4 italic">Nos Grains d'Exception</h2>
+                <div class="w-16 h-px bg-emerald-900/30 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Produit 1 -->
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border border-emerald-900/5">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">01.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Blanc Long Grain</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Un grain nacré d'une pureté absolue, reflet de nos vallées fertiles.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>4,5kg</span><span class="font-bold">3.600F</span></div>
+                        <div class="flex justify-between pb-2"><span>22,5kg</span><span class="font-bold">18.000F</span></div>
+                    </div>
+                    <button onclick="openModal('Riz Blanc Long Grain')" class="w-full bg-emerald-900 text-white py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-800 transition">Sélectionner</button>
+                </div>
+
+                <!-- Produit 2 -->
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border-t-4 border-emerald-700" style="transition-delay: 0.1s;">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">02.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Riz Santé Nature</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Riche en nutriments, ce grain accompagne votre bien-être au quotidien.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>1kg</span><span class="font-bold">1.000F</span></div>
+                        <div class="flex justify-between pb-2"><span>4,5kg</span><span class="font-bold">4.500F</span></div>
+                    </div>
+                    <button onclick="openModal('Riz Santé')" class="w-full bg-emerald-700 text-white py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition">Sélectionner</button>
+                </div>
+
+                <!-- Riz Noir -->
+                <div class="reveal bg-[#1a2e26] text-white rounded-2xl p-8 premium-card" style="transition-delay: 0.2s;">
+                    <div class="text-white/20 mb-6 text-4xl italic font-serif">03.</div>
+                    <h3 class="text-2xl font-bold mb-4 italic">Trésor Noir</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-8">Une rareté au goût terreux et sauvage, récoltée en petites quantités.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-white/10 pb-2"><span>1kg</span><span class="font-bold">2.000F</span></div>
+                    </div>
+                    <button onclick="openModal('Riz Noir/Violet')" class="w-full bg-emerald-50 text-emerald-950 py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-white transition">Sélectionner</button>
+                </div>
+
+                <!-- Granulés -->
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border border-emerald-900/5" style="transition-delay: 0.3s;">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">04.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Brisures de Vie</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Granulés fins pour des bouillies onctueuses au goût d'enfance.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>300g Blanc</span><span class="font-bold">2.000F</span></div>
+                    </div>
+                    <button onclick="openModal('Granulés de Riz')" class="w-full border border-emerald-900 text-emerald-900 py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-50 transition">Sélectionner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Commande (Style Rural Chic) -->
+    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-emerald-950/80 backdrop-blur-sm opacity-0 invisible scale-95">
+        <div class="bg-[#fcfcf9] w-full max-w-sm rounded-xl p-8 shadow-2xl relative border border-emerald-900/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-emerald-900/20 hover:text-emerald-900 transition-colors z-10"><i class="fa-solid fa-xmark text-xl"></i></button>
+            
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-normal italic text-emerald-950 mb-1">Votre Commande</h2>
+                <p class="text-[9px] text-emerald-700 font-bold tracking-[0.3em] uppercase">Du champ à votre table</p>
+            </div>
+
+            <form id="orderForm" class="space-y-5">
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Variété de riz</label>
+                    <select id="prodChoice" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs appearance-none cursor-pointer">
+                        <option value="Riz Blanc Long Grain">Riz Blanc Long Grain</option>
+                        <option value="Riz Santé">Riz Santé (Diabétiques)</option>
+                        <option value="Riz Noir/Violet">Riz Noir & Violet</option>
+                        <option value="Granulés de Riz">Granulés de Riz</option>
+                    </select>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Quantité souhaitée</label>
+                    <input type="text" id="prodQuantity" placeholder="Ex: 5 sacs de 4,5kg" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs" required>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Adresse de livraison</label>
+                    <input type="text" id="custCity" placeholder="Commune et quartier" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs" required>
+                </div>
+                
+                <button type="submit" class="w-full bg-emerald-900 text-white py-4 rounded-lg font-bold text-xs shadow-lg hover:bg-emerald-800 transition-all flex items-center justify-center gap-3 uppercase tracking-widest">
+                    <span>Valider sur WhatsApp</span>
+                    <i class="fa-brands fa-whatsapp"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-emerald-900/5 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-12">
+                <div class="text-4xl font-normal text-emerald-950 mb-4 italic nav-logo">Ridissi</div>
+                <p class="text-slate-400 max-w-sm mx-auto text-sm leading-relaxed italic">
+                    Cultivé avec passion au cœur de la Côte d'Ivoire.
+                </p>
+            </div>
+            <div class="flex justify-center gap-10 mb-12">
+                <a href="https://wa.me/2250709720781" class="text-emerald-900 hover:text-emerald-600 transition-colors"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                <a href="#" class="text-emerald-900 hover:text-emerald-600 transition-colors"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+            </div>
+            <div class="text-[9px] text-slate-300 font-bold uppercase tracking-[0.5em]">&copy; 2024 RIDISSI &mdash; L'excellence de la terre</div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp Flottant -->
+    <a href="javascript:void(0)" onclick="openModal()" class="whatsapp-float bg-emerald-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-xl shadow-emerald-700/20">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Animation de révélation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+
+        // Gestion du Modal
+        const modal = document.getElementById('orderModal');
+
+        function openModal(preselectedProduct = '') {
+            modal.classList.remove('invisible', 'opacity-0', 'scale-95');
+            modal.classList.add('visible', 'opacity-100', 'scale-100');
+            if(preselectedProduct) {
+                document.getElementById('prodChoice').value = preselectedProduct;
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('invisible', 'opacity-0', 'scale-95');
+            modal.classList.remove('visible', 'opacity-100', 'scale-100');
+        }
+
+        window.onclick = function(e) { if (e.target == modal) closeModal(); }
+
+        // Envoi de commande
+        document.getElementById('orderForm').onsubmit = function(e) {
+            e.preventDefault();
+            const prod = document.getElementById('prodChoice').value;
+            const qty = document.getElementById('prodQuantity').value;
+            const city = document.getElementById('custCity').value;
+
+            const msg = `🌾 *COMMANDE RIDISSI* 🌾\n\n` +
+                        `🍚 *Variété:* ${prod}\n` +
+                        `📦 *Quantité:* ${qty}\n` +
+                        `📍 *Livraison:* ${city}\n\n` +
+                        `_Je souhaite recevoir ces produits de la terre._`;
+
+            window.open("https://wa.me/2250709720781?text=" + encodeURIComponent(msg), '_blank');
+            closeModal();
+        };
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ridissi | Excellence du Riz Local Ivoirien</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Polices Google Fonts : DM Serif Display pour le côté rustique/campagne, Inter pour la clarté -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #064e3b;
+            --secondary: #b45309;
+            --accent: #10b981;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            color: #1e293b;
+            /* Texture subtile rappelant le papier kraft ou le grain */
+            background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
+        }
+        h1, h2, h3, h4, .nav-logo, .font-rural {
+            font-family: 'DM Serif Display', serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #orderModal {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link {
+            position: relative;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .premium-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        .premium-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(6, 78, 59, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#f9f8f4] overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-emerald-900/10">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-emerald-900 rounded-full flex items-center justify-center text-white font-serif italic text-xl shadow-md">R</div>
+                <span class="text-2xl font-bold text-emerald-950 tracking-tighter nav-logo">Ridissi</span>
+            </div>
+            <div class="hidden md:flex space-x-12 text-emerald-950">
+                <a href="#accueil" class="nav-link">La Terre</a>
+                <a href="#produits" class="nav-link">La Récolte</a>
+                <a href="#boutiques" class="nav-link">Boutiques</a>
+            </div>
+            <button onclick="openModal()" class="border border-emerald-900 text-emerald-900 px-6 py-2 rounded-full font-bold text-[10px] hover:bg-emerald-900 hover:text-white transition-all uppercase tracking-widest">
+                Commander
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="accueil" class="hero-section h-[80vh] flex items-center text-white relative">
+        <div class="container mx-auto px-6 z-10 text-center md:text-left">
+            <div class="max-w-3xl">
+                <span class="inline-block text-emerald-300 font-bold mb-6 tracking-[0.3em] uppercase text-xs">Tradition Rizicole Ivoirienne</span>
+                <h1 class="text-6xl md:text-8xl font-normal mb-8 leading-none italic">
+                    L'âme de nos <br>campagnes.
+                </h1>
+                <p class="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0 font-light italic">
+                    Un riz authentique, cultivé avec respect pour la terre, pour apporter la pureté des champs directement à votre table.
+                </p>
+                <div class="flex flex-col md:flex-row gap-5 justify-center md:justify-start">
+                    <button onclick="openModal()" class="bg-emerald-800 px-10 py-4 rounded-full font-bold text-xs hover:bg-emerald-700 transition uppercase tracking-widest">Découvrir la récolte</button>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#f9f8f4] to-transparent"></div>
+    </header>
+
+    <!-- Nos Produits -->
+    <section id="produits" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="mb-20 text-center reveal">
+                <h2 class="text-5xl font-normal text-emerald-950 mb-4 italic">Nos Grains d'Exception</h2>
+                <div class="w-16 h-px bg-emerald-900/30 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Produit 1 -->
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border border-emerald-900/5">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">01.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Blanc Long Grain</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Un grain nacré d'une pureté absolue, reflet de nos vallées fertiles.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>4,5kg</span><span class="font-bold">3.600F</span></div>
+                        <div class="flex justify-between pb-2"><span>22,5kg</span><span class="font-bold">18.000F</span></div>
+                    </div>
+                    <button onclick="openModal('Riz Blanc Long Grain')" class="w-full bg-emerald-900 text-white py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-800 transition">Sélectionner</button>
+                </div>
+
+                <!-- Produit 2 -->
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border-t-4 border-emerald-700" style="transition-delay: 0.1s;">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">02.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Riz Santé Nature</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Riche en nutriments, ce grain accompagne votre bien-être au quotidien.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>1kg</span><span class="font-bold">1.000F</span></div>
+                        <div class="flex justify-between pb-2"><span>4,5kg</span><span class="font-bold">4.500F</span></div>
+                    </div>
+                    <button onclick="openModal('Riz Santé')" class="w-full bg-emerald-700 text-white py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-600 transition">Sélectionner</button>
+                </div>
+
+                <!-- Riz Noir -->
+                <div class="reveal bg-[#1a2e26] text-white rounded-2xl p-8 premium-card" style="transition-delay: 0.2s;">
+                    <div class="text-white/20 mb-6 text-4xl italic font-serif">03.</div>
+                    <h3 class="text-2xl font-bold mb-4 italic">Trésor Noir</h3>
+                    <p class="text-white/60 text-sm leading-relaxed mb-8">Une rareté au goût terreux et sauvage, récoltée en petites quantités.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-white/10 pb-2"><span>1kg</span><span class="font-bold">2.000F</span></div>
+                    </div>
+                    <button onclick="openModal('Riz Noir/Violet')" class="w-full bg-emerald-50 text-emerald-950 py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-white transition">Sélectionner</button>
+                </div>
+
+                <!-- Granulés -->
+                <div class="reveal bg-white rounded-2xl p-8 premium-card border border-emerald-900/5" style="transition-delay: 0.3s;">
+                    <div class="text-emerald-900/20 mb-6 text-4xl italic font-serif">04.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-950 italic">Brisures de Vie</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Granulés fins pour des bouillies onctueuses au goût d'enfance.</p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <div class="flex justify-between border-b border-emerald-50 pb-2"><span>300g Blanc</span><span class="font-bold">2.000F</span></div>
+                    </div>
+                    <button onclick="openModal('Granulés de Riz')" class="w-full border border-emerald-900 text-emerald-900 py-4 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-emerald-50 transition">Sélectionner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Commande (Style Rural Chic) -->
+    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-emerald-950/80 backdrop-blur-sm opacity-0 invisible scale-95">
+        <div class="bg-[#fcfcf9] w-full max-w-sm rounded-xl p-8 shadow-2xl relative border border-emerald-900/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-emerald-900/20 hover:text-emerald-900 transition-colors z-10"><i class="fa-solid fa-xmark text-xl"></i></button>
+            
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-normal italic text-emerald-950 mb-1">Votre Commande</h2>
+                <p class="text-[9px] text-emerald-700 font-bold tracking-[0.3em] uppercase">Du champ à votre table</p>
+            </div>
+
+            <form id="orderForm" class="space-y-5">
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Variété de riz</label>
+                    <select id="prodChoice" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs appearance-none cursor-pointer">
+                        <option value="Riz Blanc Long Grain">Riz Blanc Long Grain</option>
+                        <option value="Riz Santé">Riz Santé (Diabétiques)</option>
+                        <option value="Riz Noir/Violet">Riz Noir & Violet</option>
+                        <option value="Granulés de Riz">Granulés de Riz</option>
+                    </select>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Quantité souhaitée</label>
+                    <input type="text" id="prodQuantity" placeholder="Ex: 5 sacs de 4,5kg" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs" required>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-emerald-900/40 uppercase tracking-widest ml-1">Adresse de livraison</label>
+                    <input type="text" id="custCity" placeholder="Commune et quartier" class="w-full bg-white border border-emerald-900/10 rounded-lg px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-medium text-xs" required>
+                </div>
+                
+                <button type="submit" class="w-full bg-emerald-900 text-white py-4 rounded-lg font-bold text-xs shadow-lg hover:bg-emerald-800 transition-all flex items-center justify-center gap-3 uppercase tracking-widest">
+                    <span>Valider sur WhatsApp</span>
+                    <i class="fa-brands fa-whatsapp"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-emerald-900/5 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-12">
+                <div class="text-4xl font-normal text-emerald-950 mb-4 italic nav-logo">Ridissi</div>
+                <p class="text-slate-400 max-w-sm mx-auto text-sm leading-relaxed italic">
+                    Cultivé avec passion au cœur de la Côte d'Ivoire.
+                </p>
+            </div>
+            <div class="flex justify-center gap-10 mb-12">
+                <a href="https://wa.me/2250709720781" class="text-emerald-900 hover:text-emerald-600 transition-colors"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+                <a href="#" class="text-emerald-900 hover:text-emerald-600 transition-colors"><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+            </div>
+            <div class="text-[9px] text-slate-300 font-bold uppercase tracking-[0.5em]">&copy; 2024 RIDISSI &mdash; L'excellence de la terre</div>
+        </div>
+    </footer>
+
+    <!-- Bouton WhatsApp Flottant -->
+    <a href="javascript:void(0)" onclick="openModal()" class="whatsapp-float bg-emerald-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-xl shadow-emerald-700/20">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Animation de révélation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+
+        // Gestion du Modal
+        const modal = document.getElementById('orderModal');
+
+        function openModal(preselectedProduct = '') {
+            modal.classList.remove('invisible', 'opacity-0', 'scale-95');
+            modal.classList.add('visible', 'opacity-100', 'scale-100');
+            if(preselectedProduct) {
+                document.getElementById('prodChoice').value = preselectedProduct;
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('invisible', 'opacity-0', 'scale-95');
+            modal.classList.remove('visible', 'opacity-100', 'scale-100');
+        }
+
+        window.onclick = function(e) { if (e.target == modal) closeModal(); }
+
+        // Envoi de commande
+        document.getElementById('orderForm').onsubmit = function(e) {
+            e.preventDefault();
+            const prod = document.getElementById('prodChoice').value;
+            const qty = document.getElementById('prodQuantity').value;
+            const city = document.getElementById('custCity').value;
+
+            const msg = `🌾 *COMMANDE RIDISSI* 🌾\n\n` +
+                        `🍚 *Variété:* ${prod}\n` +
+                        `📦 *Quantité:* ${qty}\n` +
+                        `📍 *Livraison:* ${city}\n\n` +
+                        `_Je souhaite recevoir ces produits de la terre._`;
 
             window.open("https://wa.me/2250709720781?text=" + encodeURIComponent(msg), '_blank');
             closeModal();
