@@ -3,298 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ridissi | Le Meilleur du Riz Local Ivoirien</title>
+    <title>Ridissi | Excellence du Riz Local Ivoirien</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Polices Google Fonts Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #065f46;
-            --secondary: #d97706;
-            --light-bg: #f8fafc;
+            --primary: #064e3b;
+            --secondary: #b45309;
+            --accent: #10b981;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
         }
-        .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        h1, h2, h3, h4, .nav-logo {
+            font-family: 'Outfit', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        /* Animation d'apparition */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #orderModal {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 overflow-x-hidden">
+
+    <!-- Audio pour l'entrée -->
+    <audio id="welcomeSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky-nav">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="bg-emerald-800 text-white p-2 rounded-lg font-bold text-xl">R</div>
-                <span class="text-2xl font-bold text-emerald-900 tracking-wider text-uppercase">RISISSI</span>
+    <nav class="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-emerald-100/50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 bg-emerald-900 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-xl shadow-emerald-200 rotate-3 group hover:rotate-0 transition-transform">R</div>
+                <span class="text-2xl font-black text-emerald-950 tracking-tight italic nav-logo">RIDISSI</span>
             </div>
-            <div class="hidden md:flex space-x-8 font-medium text-gray-700">
-                <a href="#accueil" class="hover:text-emerald-700">Accueil</a>
-                <a href="#produits" class="hover:text-emerald-700">Nos Produits</a>
-                <a href="#boutiques" class="hover:text-emerald-700">Points de Vente</a>
-                <a href="#contact" class="hover:text-emerald-700">Contact</a>
+            <div class="hidden md:flex space-x-10 text-emerald-900 font-bold uppercase text-[11px] tracking-[0.2em]">
+                <a href="#accueil" class="nav-link">Accueil</a>
+                <a href="#produits" class="nav-link">Produits</a>
+                <a href="#boutiques" class="nav-link">Boutiques</a>
             </div>
-            <a href="https://wa.me/2250709720781" target="_blank" class="bg-emerald-700 text-white px-5 py-2 rounded-full font-bold hover:bg-emerald-800 transition">
+            <button onclick="openModal()" class="bg-emerald-950 text-white px-8 py-2.5 rounded-full font-extrabold text-sm shadow-xl hover:bg-emerald-800 transition-all hover:scale-105 active:scale-95 uppercase tracking-wider">
                 Commander
-            </a>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="accueil" class="hero-gradient h-[80vh] flex items-center justify-center text-center text-white px-4">
-        <div>
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Le Goût Authentique de la Côte d'Ivoire</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Découvrez notre riz local premium, naturellement parfumé et cultivé avec passion pour votre santé.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#produits" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-md text-lg font-bold">Voir nos produits</a>
-                <a href="#boutiques" class="bg-white hover:bg-gray-100 text-emerald-900 px-8 py-3 rounded-md text-lg font-bold">Où nous trouver ?</a>
+    <!-- Hero -->
+    <header id="accueil" class="hero-section h-[90vh] flex items-center text-white relative">
+        <div class="container mx-auto px-6 z-10">
+            <div class="max-w-4xl">
+                <span class="inline-block bg-emerald-500/10 backdrop-blur-md text-emerald-400 px-6 py-2 rounded-full text-xs font-black mb-8 border border-emerald-500/20 tracking-[0.3em] uppercase">Riz Premium de Côte d'Ivoire</span>
+                <h1 class="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter">
+                    L'excellence dans chaque <span class="text-emerald-400">grain</span>.
+                </h1>
+                <p class="text-xl md:text-2xl text-emerald-50/80 mb-12 leading-relaxed max-w-2xl font-light">
+                    Redécouvrez la saveur authentique de notre terre avec <span class="font-bold text-white">Ridissi</span>, le riz local sélectionné pour sa pureté exceptionnelle.
+                </p>
+                <div class="flex flex-wrap gap-6">
+                    <button onclick="openModal()" class="bg-emerald-500 px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-400 transition shadow-2xl shadow-emerald-500/30">Démarrer une commande</button>
+                    <a href="#produits" class="bg-white/5 backdrop-blur-xl px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition border border-white/20">Explorer la gamme</a>
+                </div>
             </div>
         </div>
+        <!-- Dégradé de fond pour lecture -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
     </header>
 
     <!-- Nos Produits -->
-    <section id="produits" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">Nos Variétés d'Exception</h2>
-                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+    <section id="produits" class="py-32 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-5xl font-black text-emerald-950 mb-6 tracking-tight">Notre Sélection Signature</h2>
+                <div class="w-24 h-1.5 bg-emerald-500 mx-auto rounded-full"></div>
             </div>
-
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Produit 1 -->
-                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                    <div class="h-48 bg-emerald-100 flex items-center justify-center">
-                        <i class="fa-solid fa-wheat-awn text-emerald-800 text-6xl"></i>
+                <div class="reveal bg-white rounded-[2.5rem] p-10 hover:shadow-3xl transition-all duration-500 group border border-emerald-50/50">
+                    <div class="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-emerald-900 group-hover:rotate-12 transition-all duration-500">
+                        <i class="fa-solid fa-wheat-awn text-emerald-800 text-3xl group-hover:text-white"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Riz Blanc Long Grain</h3>
-                        <p class="text-gray-600 text-sm mb-4">Naturellement parfumé, idéal pour vos repas quotidiens en famille.</p>
-                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold">
-                            <li>4,5kg : 3 600 F</li>
-                            <li>22,5kg : 18 000 F</li>
-                        </ul>
-                        <button onclick="orderItem('Riz Blanc Long Grain')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    <h3 class="text-2xl font-black mb-4 text-emerald-950">Riz Blanc Long Grain</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Un grain fin, léger et naturellement parfumé pour sublimer vos sauces.</p>
+                    <div class="space-y-3 mb-10 font-bold text-emerald-900">
+                        <div class="flex justify-between items-center bg-emerald-50/50 p-3 rounded-xl italic"><span>4,5kg</span><span class="text-emerald-500">3.600F</span></div>
+                        <div class="flex justify-between items-center p-3"><span>22,5kg</span><span>18.000F</span></div>
                     </div>
+                    <button onclick="openModal('Riz Blanc Long Grain')" class="w-full bg-emerald-950 text-white py-4 rounded-2xl font-black tracking-widest text-xs uppercase hover:bg-emerald-700 transition">Sélectionner</button>
                 </div>
 
                 <!-- Produit 2 -->
-                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-emerald-200">
-                    <div class="h-48 bg-emerald-800 flex items-center justify-center relative">
-                        <span class="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">SANTÉ</span>
-                        <i class="fa-solid fa-heart-pulse text-white text-6xl"></i>
+                <div class="reveal bg-white rounded-[2.5rem] p-10 shadow-2xl shadow-emerald-200/50 transition-all duration-500 group border-2 border-emerald-500/20 relative overflow-hidden" style="transition-delay: 0.1s;">
+                    <div class="absolute -top-4 -right-4 bg-emerald-500 text-white px-8 py-6 rotate-12 font-black text-[10px] tracking-widest uppercase">Best-Seller</div>
+                    <div class="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-heart-pulse text-red-500 text-4xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 text-emerald-900">Riz Santé (Diabétiques)</h3>
-                        <p class="text-gray-600 text-sm mb-4">Riz blanc sélectionné pour les personnes hypertendues et diabétiques.</p>
-                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold">
-                            <li>1kg : 1 000 F</li>
-                            <li>4,5kg : 4 500 F</li>
-                            <li>25kg : 25 000 F</li>
-                        </ul>
-                        <button onclick="orderItem('Riz Santé')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    <h3 class="text-2xl font-black mb-4 text-emerald-950">Riz Santé Spécial</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-8">Indice glycémique bas, parfait pour l'équilibre nutritionnel quotidien.</p>
+                    <div class="space-y-2 mb-10 font-bold text-emerald-900">
+                        <div class="flex justify-between p-2"><span>1kg</span><span>1.000F</span></div>
+                        <div class="flex justify-between p-2 bg-emerald-50 rounded-lg"><span>4,5kg</span><span>4.500F</span></div>
+                        <div class="flex justify-between p-2"><span>25kg</span><span>25.000F</span></div>
                     </div>
+                    <button onclick="openModal('Riz Santé')" class="w-full bg-emerald-500 text-white py-4 rounded-2xl font-black tracking-widest text-xs uppercase hover:bg-emerald-600 transition shadow-lg shadow-emerald-500/30">Sélectionner</button>
                 </div>
 
-                <!-- Produit 3 -->
-                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                    <div class="h-48 bg-purple-900 flex items-center justify-center">
-                        <i class="fa-solid fa-seedling text-white text-6xl"></i>
+                <!-- Riz Noir -->
+                <div class="reveal bg-emerald-950 text-white rounded-[2.5rem] p-10 hover:shadow-3xl transition-all duration-500 group" style="transition-delay: 0.2s;">
+                    <div class="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-moon text-emerald-300 text-3xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Riz Noir & Violet</h3>
-                        <p class="text-gray-600 text-sm mb-4">Variétés rares riches en antioxydants pour une vitalité optimale.</p>
-                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold">
-                            <li>1kg : 2 000 F</li>
-                            <li>10kg : 20 000 F</li>
-                        </ul>
-                        <button onclick="orderItem('Riz Noir/Violet')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    <h3 class="text-2xl font-black mb-4">Riz Noir & Violet</h3>
+                    <p class="text-emerald-100/60 text-sm leading-relaxed mb-8">Une rareté gastronomique riche en antioxydants et saveurs boisées.</p>
+                    <div class="space-y-3 mb-10 font-bold">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-2"><span>1kg</span><span class="text-emerald-400">2.000F</span></div>
+                        <div class="flex justify-between items-center pb-2"><span>10kg</span><span>20.000F</span></div>
                     </div>
+                    <button onclick="openModal('Riz Noir/Violet')" class="w-full bg-white text-emerald-950 py-4 rounded-2xl font-black tracking-widest text-xs uppercase hover:bg-emerald-100 transition">Sélectionner</button>
                 </div>
 
-                <!-- Produit 4 -->
-                <div class="product-card bg-gray-50 rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                    <div class="h-48 bg-amber-100 flex items-center justify-center">
-                        <i class="fa-solid fa-bowl-rice text-amber-800 text-6xl"></i>
+                <!-- Granulés -->
+                <div class="reveal bg-amber-50/50 rounded-[2.5rem] p-10 border border-amber-200 transition-all duration-500" style="transition-delay: 0.3s;">
+                    <div class="w-20 h-20 bg-amber-100 rounded-3xl flex items-center justify-center mb-8">
+                        <i class="fa-solid fa-seedling text-amber-700 text-3xl"></i>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Granulés de Riz</h3>
-                        <p class="text-gray-600 text-sm mb-4">Délicieux granulés pour bouillies et préparations spéciales.</p>
-                        <ul class="space-y-2 mb-6 text-emerald-900 font-semibold text-sm">
-                            <li>300g (Blanc) : 2 000 F</li>
-                            <li>300g (Noir/Violet) : 2 500 F</li>
-                        </ul>
-                        <button onclick="orderItem('Granulés de Riz')" class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 transition">Choisir</button>
+                    <h3 class="text-2xl font-black mb-4 text-amber-950">Granulés Fins</h3>
+                    <p class="text-amber-900/60 text-sm leading-relaxed mb-8">La texture parfaite pour des bouillies onctueuses et nutritives.</p>
+                    <div class="space-y-3 mb-10 font-bold text-amber-900">
+                        <div class="flex justify-between p-2 bg-white/50 rounded-lg"><span>Blanc 300g</span><span>2.000F</span></div>
+                        <div class="flex justify-between p-2"><span>Violet 300g</span><span>2.500F</span></div>
                     </div>
+                    <button onclick="openModal('Granulés de Riz')" class="w-full bg-amber-700 text-white py-4 rounded-2xl font-black tracking-widest text-xs uppercase hover:bg-amber-600 transition">Sélectionner</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Points de Vente -->
-    <section id="boutiques" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">Où acheter votre Riz Risissi ?</h2>
-                <p class="text-gray-600">Retrouvez-nous dans plus de 20 localités à travers le pays.</p>
-                <input type="text" id="storeSearch" placeholder="Rechercher une ville..." class="mt-6 px-4 py-2 border rounded-full w-full max-w-md focus:outline-none focus:ring-2 focus:ring-emerald-700 shadow-sm" onkeyup="filterStores()">
+    <!-- Modal de Commande (Optimisé & Plus petit) -->
+    <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-emerald-950/80 backdrop-blur-md opacity-0 invisible scale-95">
+        <div class="bg-white w-full max-w-sm rounded-[2rem] p-8 shadow-2xl relative overflow-hidden">
+            <!-- Déco background modal discret -->
+            <div class="absolute -top-12 -right-12 w-24 h-24 bg-emerald-50 rounded-full"></div>
+            
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-emerald-950/20 hover:text-emerald-900 transition-colors z-10"><i class="fa-solid fa-circle-xmark text-2xl"></i></button>
+            
+            <div class="text-center mb-6 relative">
+                <h2 class="text-2xl font-black text-emerald-950 mb-1">Votre Choix</h2>
+                <p class="text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">Maison Ridissi</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="storesList">
-                <!-- Abidjan - Cocody -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="cocody">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Cocody</h4>
-                    <p class="text-sm text-gray-600 mb-1">Nouveau Chu / Djorobité 2 / Angré Château / 2 Plateaux</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 05 64 37 62 28 / 07 89 19 33 65</p>
+            <form id="orderForm" class="space-y-5 relative">
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-emerald-900/40 uppercase tracking-widest ml-3">Produit</label>
+                    <select id="prodChoice" class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-bold text-sm appearance-none cursor-pointer">
+                        <option value="Riz Blanc Long Grain">Riz Blanc Long Grain</option>
+                        <option value="Riz Santé">Riz Santé (Diabétiques)</option>
+                        <option value="Riz Noir/Violet">Riz Noir & Violet</option>
+                        <option value="Granulés de Riz">Granulés de Riz</option>
+                    </select>
                 </div>
-
-                <!-- Abidjan - Yopougon -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="yopougon">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Yopougon</h4>
-                    <p class="text-sm text-gray-600 mb-1">Azito / Toit Rouge / Ségbé / Agbayaté</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 77 94 70 73 / 07 58 67 33 59</p>
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-emerald-900/40 uppercase tracking-widest ml-3">Quantité</label>
+                    <input type="text" id="prodQuantity" placeholder="Ex: 5 sacs de 4,5kg" class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-bold text-sm placeholder:text-slate-300" required>
                 </div>
-
-                <!-- Korhogo -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="korhogo">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Korhogo</h4>
-                    <p class="text-sm text-gray-600 mb-1">Immeuble Wahab, quartier Alikader</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 88 12 28 30 / 01 02 13 45 03</p>
+                <div class="space-y-1.5">
+                    <label class="text-[9px] font-black text-emerald-900/40 uppercase tracking-widest ml-3">Livraison</label>
+                    <input type="text" id="custCity" placeholder="Ville et quartier" class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 focus:ring-1 focus:ring-emerald-500 text-emerald-950 font-bold text-sm placeholder:text-slate-300" required>
                 </div>
-
-                <!-- Yamoussoukro -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="yamoussoukro">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Yamoussoukro</h4>
-                    <p class="text-sm text-gray-600 mb-1">Grande gare Auchan / Énergie / NanNan</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 05 92 48 35</p>
-                </div>
-
-                <!-- San Pedro -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="san-pedro">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">San-Pedro</h4>
-                    <p class="text-sm text-gray-600 mb-1">Quartier Commerce</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 05 65 40 00 00</p>
-                </div>
-
-                <!-- Aboisso -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="aboisso">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Aboisso</h4>
-                    <p class="text-sm text-gray-600 mb-1">Près de la place Eillingand rue SELECT</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 47 75 02 53</p>
-                </div>
-
-                <!-- Bassam -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="grand-bassam">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Grand-Bassam</h4>
-                    <p class="text-sm text-gray-600 mb-1">Centre Ville / Quartier France</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 48 55 42 39 / 07 08 46 85 94</p>
-                </div>
-
-                <!-- Ferké -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="ferke">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Ferké</h4>
-                    <p class="text-sm text-gray-600 mb-1">Dioulabougou non loin de la grande mosquée</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 79 96 64 38</p>
-                </div>
-
-                <!-- Bouaké -->
-                <div class="store-item bg-white p-6 rounded-lg shadow-sm border-l-4 border-emerald-700" data-city="bouake">
-                    <h4 class="font-bold text-emerald-900 text-lg mb-2">Bouaké</h4>
-                    <p class="text-sm text-gray-600 mb-1">Contact Principal</p>
-                    <p class="text-emerald-800 font-bold"><i class="fa-solid fa-phone"></i> 07 18 06 07 07</p>
-                </div>
-            </div>
+                
+                <button type="submit" class="w-full bg-emerald-500 text-white py-4 rounded-xl font-black text-sm shadow-xl shadow-emerald-500/20 hover:bg-emerald-400 transition-all flex items-center justify-center gap-3 group mt-2 uppercase tracking-tighter">
+                    <span>Valider ma commande</span>
+                    <i class="fa-brands fa-whatsapp text-lg group-hover:rotate-12 transition-transform"></i>
+                </button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-emerald-950 text-white py-12 px-4">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-                <h3 class="text-2xl font-bold mb-4 italic">RISISSI</h3>
-                <p class="text-emerald-200">Producteur de riz local d'exception en Côte d'Ivoire. Nous mettons l'accent sur la qualité et la santé de nos consommateurs.</p>
-                <div class="mt-6 flex space-x-4">
-                    <a href="#" class="bg-emerald-800 p-2 rounded-full hover:bg-amber-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="bg-emerald-800 p-2 rounded-full hover:bg-amber-600 transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="bg-emerald-800 p-2 rounded-full hover:bg-amber-600 transition"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
+    <!-- Footer Premium -->
+    <footer class="bg-emerald-950 text-white py-24">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-16">
+                <div class="text-5xl font-black italic mb-6 tracking-tighter">RIDISSI</div>
+                <p class="text-emerald-400/60 max-w-lg mx-auto font-light leading-loose">
+                    Nous cultivons l'excellence pour nourrir vos ambitions et préserver votre santé. Le riz ivoirien, réinventé.
+                </p>
             </div>
-            <div>
-                <h4 class="text-xl font-bold mb-4">Liens Rapides</h4>
-                <ul class="space-y-2 text-emerald-200">
-                    <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
-                    <li><a href="#produits" class="hover:text-white transition">Nos Produits</a></li>
-                    <li><a href="#boutiques" class="hover:text-white transition">Points de Vente</a></li>
-                </ul>
+            <div class="flex justify-center gap-8 mb-16">
+                <a href="#" class="w-14 h-14 border border-white/10 rounded-full flex items-center justify-center hover:bg-white hover:text-emerald-950 transition-all duration-500"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                <a href="https://wa.me/2250709720781" class="w-14 h-14 border border-white/10 rounded-full flex items-center justify-center hover:bg-white hover:text-emerald-950 transition-all duration-500"><i class="fa-brands fa-whatsapp text-xl"></i></a>
             </div>
-            <div>
-                <h4 class="text-xl font-bold mb-4">Contact Central</h4>
-                <p class="text-emerald-200 mb-2 font-bold"><i class="fa-solid fa-location-dot mr-2"></i> Côte d'Ivoire</p>
-                <p class="text-emerald-200 mb-2 font-bold"><i class="fa-solid fa-phone mr-2"></i> +225 07 09 72 07 81</p>
-                <p class="text-emerald-200 mb-2 font-bold"><i class="fa-solid fa-envelope mr-2"></i> contact@risissi.ci</p>
-            </div>
-        </div>
-        <div class="border-t border-emerald-900 mt-12 pt-8 text-center text-emerald-400 text-sm">
-            <p>&copy; 2024 RISISSI RIZ LOCAL. Tous droits réservés.</p>
+            <div class="text-[10px] text-emerald-800 font-black uppercase tracking-[0.5em]">&copy; 2024 RIDISSI CÔTE D'IVOIRE &mdash; Maison Fondée sur la Qualité</div>
         </div>
     </footer>
 
     <!-- Bouton WhatsApp Flottant -->
-    <a href="https://wa.me/2250709720781" target="_blank" class="whatsapp-float">
+    <a href="javascript:void(0)" onclick="openModal()" class="whatsapp-float bg-emerald-500 text-white w-20 h-20 rounded-[2rem] flex items-center justify-center text-3xl shadow-3xl shadow-emerald-500/20">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <script>
-        // Fonction de recherche de boutique
-        function filterStores() {
-            let input = document.getElementById('storeSearch').value.toLowerCase();
-            let items = document.getElementsByClassName('store-item');
-            
-            for (let i = 0; i < items.length; i++) {
-                let city = items[i].getAttribute('data-city').toLowerCase();
-                let text = items[i].innerText.toLowerCase();
-                if (city.includes(input) || text.includes(input)) {
-                    items[i].style.display = "block";
-                } else {
-                    items[i].style.display = "none";
+        // Son de bienvenue
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('welcomeSound');
+            if(audio.paused) {
+                audio.volume = 0.15;
+                audio.play().catch(() => {});
+            }
+        }, {once: true});
+
+        // Animation de révélation au défilement
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
                 }
             }
         }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
 
-        // Fonction pour commander (redirection WhatsApp avec message pré-rempli)
-        function orderItem(itemName) {
-            const message = encodeURIComponent(`Bonjour Risissi, je souhaite commander du ${itemName}. Pouvez-vous me donner plus d'informations ?`);
-            window.open(`https://wa.me/2250709720781?text=${message}`, '_blank');
+        // Gestion du Modal
+        const modal = document.getElementById('orderModal');
+
+        function openModal(preselectedProduct = '') {
+            modal.classList.remove('invisible', 'opacity-0', 'scale-95');
+            modal.classList.add('visible', 'opacity-100', 'scale-100');
+            if(preselectedProduct) {
+                document.getElementById('prodChoice').value = preselectedProduct;
+            }
         }
+
+        function closeModal() {
+            modal.classList.add('invisible', 'opacity-0', 'scale-95');
+            modal.classList.remove('visible', 'opacity-100', 'scale-100');
+        }
+
+        window.onclick = function(e) { if (e.target == modal) closeModal(); }
+
+        // Envoi de commande
+        document.getElementById('orderForm').onsubmit = function(e) {
+            e.preventDefault();
+            const prod = document.getElementById('prodChoice').value;
+            const qty = document.getElementById('prodQuantity').value;
+            const city = document.getElementById('custCity').value;
+
+            const msg = `✨ *NOUVELLE COMMANDE RIDISSI* ✨\n\n` +
+                        `🍚 *Produit:* ${prod}\n` +
+                        `📦 *Quantité:* ${qty}\n` +
+                        `📍 *Lieu:* ${city}\n\n` +
+                        `_Bonjour, j'aimerais valider cette commande et avoir plus d'informations sur la livraison._`;
+
+            window.open("https://wa.me/2250709720781?text=" + encodeURIComponent(msg), '_blank');
+            closeModal();
+        };
     </script>
 </body>
 </html>
