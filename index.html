@@ -123,12 +123,6 @@
             transform: scale(1);
         }
 
-        .logo-img {
-            height: 44px;
-            width: auto;
-            object-fit: contain;
-        }
-
         .bg-secondary { background-color: var(--secondary); }
         .text-secondary { color: var(--secondary); }
         .border-secondary { border-color: var(--secondary); }
@@ -144,24 +138,26 @@
 <body class="overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-green-800/10">
+    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-green-800/10 transition-all duration-300">
         <div class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-4">
+                <!-- Logo Agrandit -->
                 <img src="https://i.postimg.cc/43mC2pLf/image.png" 
-                    alt="Logo Ridissi" 
-                    class="logo-img rounded shadow-sm">
-                <span class="text-xl md:text-2xl font-bold text-neutral-900 tracking-tighter nav-logo">Ridissi</span>
+                     alt="Logo Ridissi" 
+                     class="h-16 md:h-20 w-auto object-contain rounded shadow-sm">
+                <span class="text-2xl md:text-3xl font-bold text-neutral-900 tracking-tighter nav-logo">Ridissi</span>
             </div>
 
             <!-- Desktop Links -->
-            <div class="hidden lg:flex space-x-10 text-neutral-800">
+            <div class="hidden lg:flex space-x-10 text-neutral-800 items-center">
                 <a href="#accueil" class="nav-link">La Terre</a>
                 <a href="#produits" class="nav-link">La Récolte</a>
+                <a href="#points-de-vente" class="nav-link">Points de Vente</a>
                 <a href="#footer" class="nav-link">Contact</a>
             </div>
 
             <div class="flex items-center space-x-4">
-                <button onclick="handleCommanderClick()" class="hidden sm:block border-2 border-green-700 text-green-800 px-5 py-1.5 rounded-full font-bold text-[10px] hover:bg-green-700 hover:text-white transition-all uppercase tracking-widest">
+                <button onclick="handleCommanderClick()" class="hidden sm:block border-2 border-green-700 text-green-800 px-5 py-2 rounded-full font-bold text-[11px] hover:bg-green-700 hover:text-white transition-all uppercase tracking-widest">
                     Commander
                 </button>
                 <!-- Burger Icon -->
@@ -177,6 +173,7 @@
         <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-3xl text-neutral-400">&times;</button>
         <a href="#accueil" onclick="toggleMobileMenu()" class="text-3xl font-serif italic text-neutral-900">La Terre</a>
         <a href="#produits" onclick="toggleMobileMenu()" class="text-3xl font-serif italic text-neutral-900">La Récolte</a>
+        <a href="#points-de-vente" onclick="toggleMobileMenu()" class="text-3xl font-serif italic text-neutral-900">Points de Vente</a>
         <a href="#footer" onclick="toggleMobileMenu()" class="text-3xl font-serif italic text-neutral-900">Contact</a>
         <button onclick="toggleMobileMenu(); handleCommanderClick()" class="bg-secondary text-white px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest">
             Commander maintenant
@@ -184,7 +181,7 @@
     </div>
 
     <!-- Hero with Slideshow -->
-    <header id="accueil" class="hero-section text-white pt-20">
+    <header id="accueil" class="hero-section text-white pt-24">
         <div class="slide-container">
             <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');"></div>
             <div class="slide" style="background-image: url('https://assets.zyrosite.com/oaMKI2l7X7BnFO8Z/gemini_generated_image_pmtahrpmtahrpmta-HxYiWDBJzAQCc22C.png');"></div>
@@ -266,6 +263,155 @@
         </div>
     </section>
 
+    <!-- Points de Vente -->
+    <section id="points-de-vente" class="py-16 md:py-24 border-t border-neutral-200/50 bg-white/40">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 text-center reveal">
+                <span class="text-secondary font-bold text-[10px] uppercase tracking-widest block mb-2">Proximité</span>
+                <h2 class="text-4xl md:text-5xl font-normal text-neutral-900 mb-4 italic">Où acheter votre Riz Ridissi ?</h2>
+                <p class="text-neutral-500 text-sm md:text-base max-w-2xl mx-auto mb-6">Retrouvez-nous dans plus de 20 localités à travers le pays pour être toujours plus proche de vous.</p>
+                <div class="w-16 h-1 bg-secondary mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cocody -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Cocody</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Nouveau Chu / Djorobité 2 / Angré Château / 2 Plateaux</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        05 64 37 62 28 / 07 89 19 33 65
+                    </div>
+                </div>
+
+                <!-- Yopougon -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Yopougon</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Azito / Toit Rouge / Ségbé / Agbayaté</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 77 94 70 73 / 07 58 67 33 59
+                    </div>
+                </div>
+
+                <!-- Korhogo -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Korhogo</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Immeuble Wahab, quartier Alikader</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 88 12 28 30 / 01 02 13 45 03
+                    </div>
+                </div>
+
+                <!-- Yamoussoukro -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Yamoussoukro</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Grande gare Auchan / Énergie / NanNan</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 05 92 48 35
+                    </div>
+                </div>
+
+                <!-- San-Pedro -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">San-Pedro</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Quartier Commerce</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        05 65 40 00 00
+                    </div>
+                </div>
+
+                <!-- Aboisso -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Aboisso</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Près de la place Eillingand rue SELECT</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 47 75 02 53
+                    </div>
+                </div>
+
+                <!-- Grand-Bassam -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Grand-Bassam</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Centre Ville / Quartier France</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 48 55 42 39 / 07 08 46 85 94
+                    </div>
+                </div>
+
+                <!-- Ferké -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Ferké</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Dioulabougou non loin de la grande mosquée</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 79 96 64 38
+                    </div>
+                </div>
+
+                <!-- Bouaké -->
+                <div class="reveal bg-white rounded-2xl p-6 premium-card border border-neutral-100 shadow-sm flex flex-col">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neutral-900 italic">Bouaké</h3>
+                    </div>
+                    <p class="text-neutral-500 text-sm mb-4 flex-grow"><i class="fa-solid fa-map-pin text-neutral-300 mr-2"></i>Contact Principal</p>
+                    <div class="pt-4 border-t border-neutral-100 flex items-center text-neutral-800 font-semibold text-sm">
+                        <i class="fa-solid fa-phone text-secondary mr-3"></i>
+                        07 18 06 07 07
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Modal de Commande -->
     <div id="orderModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-green-950/80 backdrop-blur-sm opacity-0 invisible transition-all duration-300 pointer-events-none">
         <div class="bg-white w-full max-w-sm rounded-3xl p-8 shadow-2xl relative">
@@ -307,8 +453,12 @@
     <!-- Footer -->
     <footer id="footer" class="bg-neutral-900 text-white py-16 md:py-20 border-t-4 border-secondary">
         <div class="container mx-auto px-6 text-center">
-            <img src="https://scontent.foua5-1.fna.fbcdn.net/v/t39.30808-6/405795414_843660104428140_9080582825153583835_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHUP7OjtLdJAgAG9GTnglqTQ_Z1OChAKVtD9nU4KEApW8Libuhd_YGrgxLQJ5nz49gKaQjLgjkjWG5DTDbRtyP8&_nc_ohc=8qKa6FJgH0UQ7kNvwFstoFB&_nc_oc=Adm5xfAD3gZZ6E2mk9FOpNQY4E3UCJmI4oWgeYlY_RCFx91EPLrEF5ZWvirhj7JGRGs&_nc_zt=23&_nc_ht=scontent.foua5-1.fna&_nc_gid=scx1rZy8fBIrFIZ6NcEgSw&oh=00_AflYfgItQg7cv6ttzrZiJJQe7EbhXWRuaURRxB-iJ4jYtg&oe=6950FBFE" 
-                alt="Logo Ridissi" class="mx-auto mb-6 h-12 md:h-16 w-auto rounded-xl grayscale brightness-125">
+            
+            <!-- Logo du Footer Agrandit et Rendu Bien Visible -->
+            <img src="https://i.postimg.cc/43mC2pLf/image.png" 
+                alt="Logo Ridissi" 
+                class="mx-auto mb-8 h-28 md:h-40 w-auto rounded-2xl shadow-xl bg-white border border-white/20 p-2 object-contain transition-transform hover:scale-105">
+
             <div class="flex justify-center space-x-6 mb-8 text-2xl">
                 <a href="https://wa.me/2250709720781" class="text-secondary hover:text-white transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="#" class="text-neutral-600 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
